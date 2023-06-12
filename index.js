@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const database = require('./helpers/db')
+const routers = require('./routers')
 
 const app = express();
 const port = process.env.PORT;
@@ -12,13 +12,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', async (req, res) => {
-  await database.connect()
-  const db = database.db("work")
-  const collection = db.collection('person');
-  console.log(await collection.findOne());
-  res.send('test');
-});
+app.use(routers)
 
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);
