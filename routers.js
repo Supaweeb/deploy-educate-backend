@@ -3,6 +3,7 @@ const express = require('express')
 const database = require('./helpers/db')
 
 const personRouter = require('./routers/personRouter')
+const userRouter = require('./routers/userRouter')
 
 const router = express.Router()
 
@@ -15,5 +16,6 @@ router.get('/', async (req, res) => {
 });
 
 router.use('/person', personRouter)
+router.use('/user', userRouter)
 
 module.exports = router

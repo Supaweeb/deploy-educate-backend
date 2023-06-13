@@ -2,15 +2,15 @@ const express = require('express')
 
 const router = express.Router()
 
-const personController = require('../controllers/personController')
+const userController = require('../controllers/userController')
 
-router.get('/confirm',
-    personController.findPerson(),
+router.post('/login',
+    userController.login(),
     (req, res, next) => {
     req.response = {
       res_code: '0000',
-      res_desc: 'test',
-      data: req.persons
+      res_desc: 'Authen',
+      data: req.user
     }
     res.json(req.response)
     next()
